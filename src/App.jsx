@@ -1,28 +1,24 @@
-
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
-import Card from './Components/Card'
-
-
-
-
 
 function App() {
-  const[name,setName] = useState("")
-  
+  const[time,setTime] = useState(0)
 
-
-
+  useEffect(() => {
+    const time = setInterval(()=> {
+      setTime(prevSecond =>prevSecond +1)
+    },1000)
+    return() => {
+      clearInterval(time)
+    }
+  })
+ 
 
   return (
-   <div>
-   
-    <Card name = {name} setName = {setName} />
-   </div>
+    <div>
+     <h1>{time}</h1>
+    </div>
   )
-  }
-  
-  
-
+}
 
 export default App
